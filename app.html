@@ -68,13 +68,13 @@
                 <a class="nav-link" href="/code.html">The Code</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">The Repo</a>
+                <a class="nav-link" href="https://github.com/tn2690/SuperBatEvents">The Repo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="https://tomnguyen9517.netlify.app/#about">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
+                <a class="nav-link" href="https://tomnguyen9517.netlify.app/#blog">Blog</a>
               </li>
             </ul>
           </div>
@@ -120,9 +120,35 @@
           </table>
         </div>
 
-        <div class="col-6"></div>
-        <div class="row">
-          <div class="col-12"></div>
+        <div class="col-6">
+          <img src="/img/SuperBatEvents_500.png" class="img-fluid p-2" />
+        </div>
+        <div class="row border-top border-2">
+          <div class="col-12 mt-2 mb-2">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#eventModal">
+              Add Event
+            </button>
+            <div class="table-responsive mt-2">
+              <table class="table table-striped" id="eventData">
+                <thead class="table-primary">
+                  <tr>
+                    <th>Event Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Attendance</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="eventBody">
+                  <!-- template data goes here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -147,9 +173,151 @@
       </div>
     </footer>
 
+    <!-- add event modal -->
+    <div class="modal" tabindex="-1" id="eventModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Event</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="newEventForm">
+              <!-- Event Name -->
+              <div class="mb-2">
+                <label class="form-label" for="newEventName">Event Name</label>
+                <input
+                  id="newEventName"
+                  class="form-control"
+                  type="text"
+                  placeholder="Enter Event Name"
+                  required />
+              </div>
+              <!-- City -->
+              <div class="mb-2">
+                <label class="form-label" for="newEventCity">City</label>
+                <input
+                  id="newEventCity"
+                  class="form-control"
+                  type="text"
+                  placeholder="Enter City Name"
+                  required />
+              </div>
+              <!-- State -->
+              <div class="mb-2">
+                <label class="form-label" for="newEventState">State</label>
+                <select class="form-control" id="newEventState" required>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DE">Delaware</option>
+                  <option value="DC">District Of Columbia</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="ME">Maine</option>
+                  <option value="MD">Maryland</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MT">Montana</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NY">New York</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option>
+                  <option value="WA">Washington</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+              </div>
+              <!-- Attendance -->
+              <div class="mb-2">
+                <label class="form-label" for="newEventAttendance">Attendance</label>
+                <input
+                  id="newEventAttendance"
+                  class="form-control"
+                  type="number"
+                  value="0"
+                  required />
+              </div>
+              <!-- Date -->
+              <div class="mb-2">
+                <label class="form-label" for="newEventDate">Date</label>
+                <input
+                  id="newEventDate"
+                  class="form-control"
+                  type="date"
+                  required />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="saveEventData"
+              id="btnSave"
+              data-bs-dismiss="modal">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- page templates -->
     <template id="cityDD-template">
       <li><a class="dropdown-item" onclick="getEvents(this)"></a></li>
+    </template>
+
+    <template id="eventData-template">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
     </template>
     <!-- end page templates -->
 
@@ -163,5 +331,10 @@
 
     <!-- load script -->
     <script src="/js/site.js"></script>
+
+    <!-- modal save button -->
+    <script>
+      document.getElementById("btnSave").addEventListener("click", saveEventData);
+    </script>
   </body>
 </html>

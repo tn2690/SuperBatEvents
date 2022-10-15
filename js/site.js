@@ -1,97 +1,38 @@
 // initial dataset for super bat
 // array of objects
-// const events = [
-//   {
-//     // event
-//     // city
-//     // state
-//     // attendance
-//     // date
-//     event: "ComicCon",
-//     city: "New York",
-//     state: "NY",
-//     attendance: 10000,
-//     date: "06-01-2017",
-//   },
-//   {
-//     event: "SDCC",
-//     city: "San Diego",
-//     state: "CA",
-//     attendance: 5000,
-//     date: "07-24-2018",
-//   },
-//   {
-//     event: "ComicCon",
-//     city: "New York",
-//     state: "NY",
-//     attendance: 9950,
-//     date: "08-19-2019",
-//   },
-//   {
-//     event: "SDCC",
-//     city: "San Diego",
-//     state: "CA",
-//     attendance: 4500,
-//     date: "01-20-2020",
-//   },
-//   {
-//     event: "HeroesCon",
-//     city: "Charlotte",
-//     state: "NC",
-//     attendance: 40000,
-//     date: "06/01/2017",
-//   },
-//   {
-//     event: "HeroesCon",
-//     city: "Charlotte",
-//     state: "NC",
-//     attendance: 45000,
-//     date: "06/01/2018",
-//   },
-// ];
-
 const events = [
   {
+    // event
+    // city
+    // state
+    // attendance
+    // date
     event: "ComicCon",
     city: "New York",
     state: "New York",
-    attendance: 240000,
-    date: "06/01/2017",
+    attendance: 10000,
+    date: "06-01-2017",
+  },
+  {
+    event: "SDCC",
+    city: "San Diego",
+    state: "California",
+    attendance: 5000,
+    date: "07-24-2018",
   },
   {
     event: "ComicCon",
     city: "New York",
     state: "New York",
-    attendance: 250000,
-    date: "06/01/2018",
+    attendance: 9950,
+    date: "08-19-2019",
   },
   {
-    event: "ComicCon",
-    city: "New York",
-    state: "New York",
-    attendance: 257000,
-    date: "06/01/2019",
-  },
-  {
-    event: "ComicCon",
+    event: "SDCC",
     city: "San Diego",
     state: "California",
-    attendance: 130000,
-    date: "06/01/2017",
-  },
-  {
-    event: "ComicCon",
-    city: "San Diego",
-    state: "California",
-    attendance: 140000,
-    date: "06/01/2018",
-  },
-  {
-    event: "ComicCon",
-    city: "San Diego",
-    state: "California",
-    attendance: 150000,
-    date: "06/01/2019",
+    attendance: 4500,
+    date: "01-20-2020",
   },
   {
     event: "HeroesCon",
@@ -107,16 +48,75 @@ const events = [
     attendance: 45000,
     date: "06/01/2018",
   },
-  {
-    event: "HeroesCon",
-    city: "Charlotte",
-    state: "North Carolina",
-    attendance: 50000,
-    date: "06/01/2019",
-  },
 ];
 
-// builds list of specific cities
+// const events = [
+//   {
+//     event: "ComicCon",
+//     city: "New York",
+//     state: "New York",
+//     attendance: 240000,
+//     date: "06/01/2017",
+//   },
+//   {
+//     event: "ComicCon",
+//     city: "New York",
+//     state: "New York",
+//     attendance: 250000,
+//     date: "06/01/2018",
+//   },
+//   {
+//     event: "ComicCon",
+//     city: "New York",
+//     state: "New York",
+//     attendance: 257000,
+//     date: "06/01/2019",
+//   },
+//   {
+//     event: "ComicCon",
+//     city: "San Diego",
+//     state: "California",
+//     attendance: 130000,
+//     date: "06/01/2017",
+//   },
+//   {
+//     event: "ComicCon",
+//     city: "San Diego",
+//     state: "California",
+//     attendance: 140000,
+//     date: "06/01/2018",
+//   },
+//   {
+//     event: "ComicCon",
+//     city: "San Diego",
+//     state: "California",
+//     attendance: 150000,
+//     date: "06/01/2019",
+//   },
+//   {
+//     event: "HeroesCon",
+//     city: "Charlotte",
+//     state: "North Carolina",
+//     attendance: 40000,
+//     date: "06/01/2017",
+//   },
+//   {
+//     event: "HeroesCon",
+//     city: "Charlotte",
+//     state: "North Carolina",
+//     attendance: 45000,
+//     date: "06/01/2018",
+//   },
+//   {
+//     event: "HeroesCon",
+//     city: "Charlotte",
+//     state: "North Carolina",
+//     attendance: 50000,
+//     date: "06/01/2019",
+//   },
+// ];
+
+// builds list of specific cities. entry point for app
 function buildDropDown() {
   let eventDD = document.getElementById("eventDropDown");
   eventDD.innerHTML = "";
@@ -124,7 +124,7 @@ function buildDropDown() {
   // grab template from template tag
   const template = document.getElementById("cityDD-template");
 
-  let currentEvents = events;
+  let currentEvents = getEventData();
 
   // filter array by distinct cities
   // ["new york", "san diego", "charlotte"];
@@ -138,6 +138,8 @@ function buildDropDown() {
   let dropdownul = document.createElement("ul");
   dropdownul.classList.add("dropdown-menu");
 
+  
+  
   // add all item
   let ddlItemNodeAll = document.importNode(template.content, true);
   let cityName = "All";
@@ -150,6 +152,8 @@ function buildDropDown() {
   // add the item to the ul
   dropdownul.appendChild(ddlItemNodeAll);
 
+  
+  
   // loop the length of number of distinct events (cities)
   for (let i = 0; i < distinctEvents.length; i++) {
     // gets <li><a class="dropdown-item" onclick="getEvents()"></a></li> from the template
@@ -171,13 +175,16 @@ function buildDropDown() {
   }
 
   eventDD.appendChild(dropdownul);
+  // display the stats for all events
   displayStats(currentEvents);
+  // load the data in the grid
+  displayEventData();
 }
 
 function getEvents(element) {
   let city = element.getAttribute("data-string");
 
-  let currentEvents = events;
+  let currentEvents = getEventData();
 
   let statsHeader = document.getElementById("statsHeader");
 
@@ -265,4 +272,80 @@ function leastAttendance(events) {
     }
   }
   return minAttendance;
+}
+
+// retrieve data from local storage
+function getEventData() {
+  let currentEvents = JSON.parse(localStorage.getItem("eventData"));
+
+  if (currentEvents == null) {
+    currentEvents = events;
+    localStorage.setItem("eventData", JSON.stringify(currentEvents));
+  }
+  return currentEvents;
+}
+
+// displays the event data in the grid
+function displayEventData() {
+  // get template
+  const template = document.getElementById("eventData-template");
+  // get location where the template will be written
+  const eventBody = document.getElementById("eventBody");
+
+  eventBody.innerHTML = "";
+
+  // get data from local storage
+  let currentEvents = getEventData();
+
+  for (let i = 0; i < currentEvents.length; i++) {
+    const eventRow = document.importNode(template.content, true);
+
+    // return array of tds
+    const eventCols = eventRow.querySelectorAll("td");
+    eventCols[0].textContent = currentEvents[i].event;
+    eventCols[1].textContent = currentEvents[i].city;
+    eventCols[2].textContent = currentEvents[i].state;
+    eventCols[3].textContent = currentEvents[i].attendance;
+
+    // format date for the page
+    let eventDate = new Date(currentEvents[i].date).toLocaleDateString();
+
+    eventCols[4].textContent = eventDate;
+
+    eventBody.appendChild(eventRow);
+  }
+}
+
+// saves event data to local storage
+function saveEventData() {
+  let currentEvents = getEventData();
+
+  /* 
+  event: "ComicCon",
+    city: "New York",
+    state: "New York",
+    attendance: 10000,
+    date: "06-01-2017",
+  }
+  */
+ let newEventObj = {};
+
+ newEventObj["event"] = document.getElementById("newEventName").value;
+ newEventObj["city"] = document.getElementById("newEventCity").value;
+
+ let stateSel = document.getElementById("newEventState");
+ newEventObj["state"] = stateSel.options[stateSel.selectedIndex].text;
+
+ newEventObj["attendance"] = parseInt(document.getElementById("newEventAttendance").value, 10);
+
+ let eventDate = document.getElementById("newEventDate").value;
+ let eventDate2 = `${eventDate} 00:00`;
+
+ newEventObj["date"] = new Date(eventDate2).toLocaleDateString();
+
+ currentEvents.push(newEventObj);
+
+ localStorage.setItem("eventData", JSON.stringify(currentEvents));
+
+ buildDropDown();
 }
